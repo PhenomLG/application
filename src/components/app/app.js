@@ -8,10 +8,11 @@ import './app.css';
 
 function App(){
     const data = [
-        {name: "Алексеев А.В", salary: 800},
-        {name: "Бродников В.А", salary: 3000},
-        {name: "Исаев И.К", salary: 5000},
+        {name: "Алексеев А.В", salary: 800, increase: false, id: 1},
+        {name: "Бродников В.А", salary: 3000, increase: true, id: 2},
+        {name: "Исаев И.К", salary: 5000, increase: false, id: 3},
     ];
+
     return (
         <div className="app"> 
             <AppInfo/>
@@ -24,5 +25,4 @@ function App(){
         </div>
     )
 }
-
 export default App;
