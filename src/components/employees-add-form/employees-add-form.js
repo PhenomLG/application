@@ -1,9 +1,13 @@
-import './employees-add-form.css';
 import { Component } from 'react';
+
+import nextId from 'react-id-generator'
+
+import './employees-add-form.css';
+
 
 
 class EmployeesAddForm extends Component{
-    _id = 0;
+    _id = nextId();
     constructor(props){
         super(props);
         this.state = {
@@ -18,7 +22,7 @@ class EmployeesAddForm extends Component{
             [e.target.name]: e.target.value
         });
     }
-    
+
     render(){
         const {name, salary} = this.state;
         const {onAdd} = this.props;
