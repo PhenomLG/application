@@ -6,10 +6,10 @@ const EmployeesList = ({data, onDelete}) => {
         const {id, ...itemProps} = item;
         return (
             <EmployeesListItem 
-            key={id} 
-            {...itemProps}
-            // Передаем метод и прокидываем id
-            onDelete={() => onDelete(id)}
+                key={id} 
+                {...itemProps}
+                // Передаем метод и прокидываем id
+                onDelete={() => onDelete(id)}
             /> 
         )
     });

@@ -24,7 +24,6 @@ class App extends Component{
     // Удаление элемента по id
     deleteItem = (id) => {
         this.setState(({data}) => {
-            console.log(id);
             return {
                 // В данном случае data заменяется на другой массив,
                 // но это было сделано без изменения объекта data напрямую 
@@ -33,15 +32,22 @@ class App extends Component{
         })
     }
 
-    AddItem = (name, salary, id, e) =>{  
+    // Свойства прилетают из точки вызова в форме
+    AddItem = (name, salary, id, e) =>{    
         e.preventDefault();
+        
+        if(!name || !salary)
+            return;
+
         this.setState(({data}) => {
             return {
                 data: data.concat({name, salary, id})
             }
         })
     }
+
     render(){
+        console.log('app is rendered')
         return (
             <div className="app"> 
                 <AppInfo/>
@@ -50,9 +56,11 @@ class App extends Component{
                     <AppFilter/>
                 </div>
                 <EmployeesList 
-                data={this.state.data}
-                onDelete={this.deleteItem}/>
-                <EmployeesAddForm onAdd={this.AddItem}/>
+                    data={this.state.data}
+                    onDelete={this.deleteItem}/>
+                <EmployeesAddForm 
+                    index = {this.state.data.length}
+                    onAdd={this.AddItem}/>
             </div>
         )
     }

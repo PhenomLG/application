@@ -3,13 +3,14 @@ import { Component } from 'react';
 
 
 class EmployeesAddForm extends Component{
+    _id = 0;
     constructor(props){
         super(props);
         this.state = {
             name: "",
             salary: ""
-        }
-        this.newId = 4;
+        };
+        this._id = props.index;
     }
 
     onValueChange = (e) => {
@@ -17,10 +18,11 @@ class EmployeesAddForm extends Component{
             [e.target.name]: e.target.value
         });
     }
-
+    
     render(){
         const {name, salary} = this.state;
         const {onAdd} = this.props;
+
         return (
             <div className="app-add-form">
                 <h3>Добавьте нового сотрудника</h3>
@@ -41,7 +43,7 @@ class EmployeesAddForm extends Component{
     
                     <button type="submit"
                             className="btn btn-outline-light"
-                            onClick={(e) => onAdd(name, salary, this.newId, e)}
+                            onClick={(e) => onAdd(name, salary, ++this._id, e)}
                             >Добавить</button>
                 </form>
             </div>   
