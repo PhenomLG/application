@@ -1,31 +1,53 @@
-
+import { Component } from 'react';
 import './app-filter.css';
 
-const AppFilter = () => {
-    return (
-        <div className="btn-group">
-            <button 
-            className="btn btn-light"
-            type="button"
-            data-employees="all">
-                Все сотрудники
-            </button>
+class AppFilter extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            filter: "all"
+        }
+    }
 
-            <button 
-            className="btn btn-outline-light"
-            type="button"
-            data-employees="toIncrease">
-                На повышение
-            </button>
+    onToggleFilter = (e) => {
+        const filter = e.target.getAttribute("data-employees");
+        this.setState({filter});
+        this.props.onToggleFilter(filter);
+    }
 
-            <button 
-            className="btn btn-outline-light"
-            type="button"
-            data-employees="bigSalary">
-                З/П больше 1000$
-            </button>
-        </div>
-    )
+    render(){
+        const {filter} = this.state;
+        const className = "btn btn-outline-light",
+              activeClassName = "btn btn-light";
+        
+        return (
+            <div className="btn-group">
+                <button 
+                    className={filter === "all" ? activeClassName : className}
+                    type="button"
+                    data-employees="all"
+                    onClick={this.onToggleFilter}>
+                    Все сотрудники
+                </button>
+    
+                <button 
+                    className={filter === "increase" ? activeClassName : className}
+                    type="button"
+                    data-employees="increase"
+                    onClick={this.onToggleFilter}>
+                    На повышение
+                </button>
+    
+                <button 
+                    className={filter === "limit" ? activeClassName : className}
+                    type="button"
+                    data-employees="limit"
+                    onClick={this.onToggleFilter}>
+                    З/П больше 1000$
+                </button>
+            </div>
+        )
+    }
 }
 
 export default AppFilter;
