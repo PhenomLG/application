@@ -14,6 +14,7 @@ const AppFilter = (props) => {
             <button 
                 className={`btn btn-${clazz}`}
                 type="button"
+                key={name}
                 onClick={() => props.onToggleFilter(name)}>
             {label}
             </button>
