@@ -79,15 +79,13 @@ class App extends Component{
         this.setState({filter});
     }
 
-    filterEmp = (items, prop) => {
-        switch(prop){
-            case "all": 
-                return items;
-            case "increase":
-                return items.filter(item => item.increase);
+    filterEmp = (items, filter) => {
+        switch(filter){
+            case "promote":
+                return items.filter(item => item.promotion);
             case "limit":
                 return items.filter(item => item.salary >= 1000);
-            default: return; 
+            default: return items; 
         }
     }
 
@@ -96,8 +94,7 @@ class App extends Component{
         const {data, term} = this.state;
         const employees = this.state.data.length;
         const increased = this.state.data.filter(item => item.increase).length;
-        const filterData = this.filterEmp(data, this.state.filter);
-        const visibleData = this.searchEmp(filterData, term);
+        const visibleData = this.searchEmp(this.filterEmp(data, this.state.filter), term);
 
         return (
             <div className="app"> 

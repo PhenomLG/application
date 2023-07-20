@@ -31,9 +31,9 @@ class AppFilter extends Component {
                 </button>
     
                 <button 
-                    className={filter === "increase" ? activeClassName : className}
+                    className={filter === "promote" ? activeClassName : className}
                     type="button"
-                    data-employees="increase"
+                    data-employees="promote"
                     onClick={this.onToggleFilter}>
                     На повышение
                 </button>
