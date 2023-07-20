@@ -14,9 +14,9 @@ class App extends Component{
         super(props);
         this.state = {
             data: [
-                {name: "Алексеев А.В", salary: 800, id: 1},
-                {name: "Бродников В.А", salary: 3000, id: 2},
-                {name: "Исаев И.К", salary: 5000, id: 3},
+                {name: "Алексеев А.В", salary: 800, increase:false, promotion:false, id: 1},
+                {name: "Бродников В.А", salary: 3000, increase:false, promotion:false, id: 2},
+                {name: "Исаев И.К", salary: 5000, increase:false, promotion:false, id: 3},
             ]
         }
     }
@@ -35,8 +35,8 @@ class App extends Component{
     // Свойства прилетают из точки вызова в форме
     AddItem = (name, salary, id, e) =>{    
         e.preventDefault();
-        
-        if(!name || !salary)
+
+        if(name.length < 3 || !salary)
             return;
 
         this.setState(({data}) => {
@@ -46,18 +46,35 @@ class App extends Component{
         })
     }
 
+    onToggleProp = (id, prop) => {
+        this.setState(({data}) => ({
+            data: data.map(el => {
+                if(el.id === id)
+                    {
+                       return {...el, [prop]: !el[prop]}
+                    }
+                return el;   
+            })
+        }))
+    }
+
+
     render(){
-        console.log('app is rendered')
+        const employees = this.state.data.length;
+        const increased = this.state.data.filter(item => item.increase).length;
         return (
             <div className="app"> 
-                <AppInfo/>
+                <AppInfo employees={employees}
+                         increased={increased}/>
                 <div className="search-panel">
                     <SearchPanel/>
                     <AppFilter/>
                 </div>
                 <EmployeesList 
                     data={this.state.data}
-                    onDelete={this.deleteItem}/>
+                    onDelete={this.deleteItem}
+                    onToggleProp={this.onToggleProp}
+                    />
                 <EmployeesAddForm 
                     index = {this.state.data.length}
                     onAdd={this.AddItem}/>
