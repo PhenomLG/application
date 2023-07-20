@@ -35,17 +35,17 @@ class App extends Component{
     }
 
     // Свойства прилетают из точки вызова в форме
-    AddItem = (name, salary, id, e) =>{    
-        e.preventDefault();
+    AddItem = (name, salary, id) =>{    
+
 
         if(name.length < 3 || !salary)
-            return;
+            return null;
 
         this.setState(({data}) => {
             return {
                 data: data.concat({name, salary, id})
             }
-        })
+        });
     }
 
     onToggleProp = (id, prop) => {
@@ -101,7 +101,6 @@ class App extends Component{
             })
         }));
     }
-
 
     render(){
         const {data, term} = this.state;

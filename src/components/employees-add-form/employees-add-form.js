@@ -19,7 +19,14 @@ class EmployeesAddForm extends Component{
         });
     }
 
-    
+    onAddItem = (e) => {
+        e.preventDefault();
+        const result = this.props.onAdd(this.state.name, this.state.salary, ++this._id);
+        console.log(result);
+        if(result !== null)
+            this.setState(() => this.initialState); 
+    }
+
 
     render(){
         const {name, salary} = this.state;
@@ -46,10 +53,7 @@ class EmployeesAddForm extends Component{
     
                     <button type="submit"
                             className="btn btn-outline-light"
-                            onClick={(e) => {
-                                onAdd(name, salary, ++this._id, e);
-                                this.setState(() => this.initialState); // 
-                            }}
+                            onClick={this.onAddItem}
                             >Добавить</button>
                 </form>
             </div>   
