@@ -104,6 +104,7 @@ class App extends Component{
                     <SearchPanel
                         onUpdateSearch={this.onUpdateSearch}/>
                     <AppFilter
+                        filter={this.state.filter}
                         onToggleFilter={this.onToggleFilter}/>
                 </div>
                 <EmployeesList 
