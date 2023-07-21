@@ -1,9 +1,7 @@
 {
-    "posts": [
-      { "id": 1, "title": "json-server", "author": "typicode" }
-    ],
-    "comments": [
-      { "id": 1, "body": "some comment", "postId": 1 }
-    ],
-    "profile": { "name": "typicode" }
+    "employees": [
+      { "name": "Алексеев А.В", "salary": 800, "increase": false, "promotion":false, "id": 1},
+      { "name": "Бродников В.А", "salary": 3000, "increase": false, "promotion":false, "id": 2},
+      { "name": "Исаев И.К", "salary": 5000, "increase": false, "promotion":false, "id": 3}
+    ]
   }
