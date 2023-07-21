@@ -28,6 +28,18 @@ class jsonDb {
         });
         return await result.json();
     }
+
+    async patchData(data, id){
+        console.log(data, id);
+        const result = await fetch(this.url + `/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+        return await result.json();
+    }
 }
 
 export default jsonDb;

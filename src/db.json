@@ -1,23 +1,26 @@
 {
   "employees": [
     {
-      "name": "Алексеев А.В",
-      "salary": 800,
+      "name": "Борис",
+      "salary": 388,
       "increase": false,
       "promotion": false,
       "id": 1
     },
     {
-      "name": "Бродников В.А",
-      "salary": 3000,
-      "increase": false,
-      "promotion": false,
+      "name": "Петров Ф.Н",
+      "salary": "4000",
       "id": 2
     },
     {
-      "name": "Владченко И.Н",
-      "salary": "7800",
-      "id": 6
+      "name": "Болгаренко Ю.А",
+      "salary": "780",
+      "id": 3
+    },
+    {
+      "name": "Михалков Ю.Б",
+      "salary": "499",
+      "id": 4
     }
   ]
 }

@@ -10,9 +10,11 @@ import './app.css';
 
 
 class App extends Component{
+    _maxId;
     constructor(props){
         super(props);
-        console.log("Инит");
+        this._maxId = Math.max(...props.data.map(el => el.id));
+        console.log(this._maxId);
         this.state = {
             data: props.data,
             term: "",
@@ -22,15 +24,15 @@ class App extends Component{
 
     deleteItem = async (id) => {
         await this.props.db.deleteData(id)
-            .then(() => {
-                this.setState(({data}) => {
-                    return {
-                        // В данном случае data заменяется на другой массив,
-                        // но это было сделано без изменения объекта data напрямую 
-                        data: data.filter(el => el.id !== id)
-                    }
-                });
-            })
+        .then(async () => {
+            this.setState(({data}) => {
+                return {
+                    // В данном случае data заменяется на другой массив,
+                    // но это было сделано без изменения объекта data напрямую 
+                    data: data.filter(el => el.id !== id)
+                }
+            });
+        })
     }
 
         // Свойства прилетают из точки вызова в форме
@@ -94,10 +96,8 @@ class App extends Component{
         this.setState(({data}) => ({
             data: data.map(el => {
                 if(el.id === id)
-                    {
-                       console.log(`${el.id === id}`);
-                       return {...el, salary: newSalary}
-                    }
+                       return {...el, salary: newSalary};
+
                 return el;   
             })
         }));
@@ -127,7 +127,7 @@ class App extends Component{
                     onInputSalaryChange = {this.onInputSalaryChange}
                     />
                 <EmployeesAddForm 
-                    index = {this.state.data.length}
+                    index = {this._maxId}
                     onAdd={this.AddItem}/>
             </div>
         )
