@@ -1,5 +1,3 @@
-
-
 class jsonDb {
     constructor(dbUrl){
         this.url = dbUrl;
@@ -21,6 +19,13 @@ class jsonDb {
         if(!result.ok)
             throw new Error(`Could not fetch ${this.url}, status ${result.status}`);
         
+        return await result.json();
+    }
+
+    async deleteData(id){
+        const result = await fetch(this.url + `/${id}`, {
+            method: "DELETE"
+        });
         return await result.json();
     }
 }

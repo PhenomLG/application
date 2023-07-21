@@ -20,15 +20,17 @@ class App extends Component{
         };
     }
 
-    // Удаление элемента по id
-    deleteItem = (id) => {
-        this.setState(({data}) => {
-            return {
-                // В данном случае data заменяется на другой массив,
-                // но это было сделано без изменения объекта data напрямую 
-                data: data.filter(el => el.id !== id)
-            }
-        })
+    deleteItem = async (id) => {
+        await this.props.db.deleteData(id)
+            .then(() => {
+                this.setState(({data}) => {
+                    return {
+                        // В данном случае data заменяется на другой массив,
+                        // но это было сделано без изменения объекта data напрямую 
+                        data: data.filter(el => el.id !== id)
+                    }
+                });
+            })
     }
 
         // Свойства прилетают из точки вызова в форме

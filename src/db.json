@@ -15,31 +15,9 @@
       "id": 2
     },
     {
-      "name": "Исаев И.К",
-      "salary": 5000,
-      "increase": false,
-      "promotion": false,
-      "id": 3
-    },
-    {
-      "name": "Никитин В.М",
-      "salary": "777",
-      "id": 4
-    },
-    {
-      "name": "ghjghjg",
-      "salary": "5675",
-      "id": 5
-    },
-    {
-      "name": "hjghjg",
-      "salary": "4654",
+      "name": "Владченко И.Н",
+      "salary": "7800",
       "id": 6
-    },
-    {
-      "name": "fghfghf",
-      "salary": "455665",
-      "id": 7
     }
   ]
 }
