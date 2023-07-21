@@ -2,9 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import App from './components/app/app';
-import getJsonData from './services/db'
+//import getJsonData from './services/jsonDb'
 
 import './index.css';
+import jsonDb from './services/jsonDb';
 
 
 initialiazeApp();
@@ -13,13 +14,14 @@ initialiazeApp();
 async function initialiazeApp(){
   const dbUrl = "http://localhost:3001/employees";
   const root = ReactDOM.createRoot(document.getElementById('root'));
+  const db = new jsonDb(dbUrl);
   try{
-    await getJsonData(dbUrl)
+    await db.getJsonData()
       .then(data => {
         root.render(
           <React.StrictMode>
             <App data={data}
-                 dbUrl={dbUrl} />
+                 db={db} />
           </React.StrictMode>
         );
       })

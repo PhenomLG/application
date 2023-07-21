@@ -1,6 +1,5 @@
 import { Component } from 'react';
 
-
 import AppInfo from '../app-info/app-info';
 import SearchPanel from '../search-panel/search-panel';
 import AppFilter from '../app-filter/app-filter';
@@ -13,22 +12,12 @@ import './app.css';
 class App extends Component{
     constructor(props){
         super(props);
-        console.log("Инициализирую состояние");
+        console.log("Инит");
         this.state = {
             data: props.data,
             term: "",
             filter: "all"
         };
-        
-        // this.state = {
-        //     data: [
-        //         {name: "Алексеев А.В", salary: 800, increase:false, promotion:false, id: 1},
-        //         {name: "Бродников В.А", salary: 3000, increase:false, promotion:false, id: 2},
-        //         {name: "Исаев И.К", salary: 5000, increase:false, promotion:false, id: 3},
-        //     ],
-        //     term: "",
-        //     filter: "all"
-        // }
     }
 
     // Удаление элемента по id
@@ -42,17 +31,21 @@ class App extends Component{
         })
     }
 
-    // Свойства прилетают из точки вызова в форме
+        // Свойства прилетают из точки вызова в форме
     AddItem = async (name, salary, id) =>{   
-        if(name.length < 3 || !salary)
-            return null;
-
-        this.setState(({data}) => {
-            return {
-                data: data.concat({name, salary, id})
-            }
-        });
-    }
+            if(name.length < 3 || !salary)
+                return null;
+    
+            const newItem = {name, salary, id};
+            await this.props.db.postData(JSON.stringify(newItem))
+                .then(result => {
+                    this.setState(({data}) => {
+                        return {
+                            data: data.concat(result)
+                        }
+                    });
+                })
+        }
 
     onToggleProp = (id, prop) => {
         this.setState(({data}) => ({
