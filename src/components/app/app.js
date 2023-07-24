@@ -14,7 +14,6 @@ class App extends Component{
     constructor(props){
         super(props);
         this._maxId = Math.max(...props.data.map(el => el.id));
-        console.log(this._maxId);
         this.state = {
             data: props.data,
             term: "",
@@ -96,8 +95,11 @@ class App extends Component{
         this.setState(({data}) => ({
             data: data.map(el => {
                 if(el.id === id)
-                       return {...el, salary: newSalary};
-
+                {      
+                    const patchedObj = {...el, salary: newSalary}
+                    this.props.db.patchData(patchedObj, id)
+                    return {...el, salary: newSalary};
+                }
                 return el;   
             })
         }));
