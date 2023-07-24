@@ -14,7 +14,7 @@ class jsonDb {
         return await result.json();
     }
 
-    async getJsonData (){
+    async getData (){
         const result = await fetch(this.url);
         if(!result.ok)
             throw new Error(`Could not fetch ${this.url}, status ${result.status}`);

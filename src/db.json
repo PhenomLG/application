@@ -10,17 +10,16 @@
     {
       "name": "Болгаренко Ю.А",
       "salary": "780",
-      "id": 3
-    },
-    {
-      "name": "Михалков Ю.Б",
-      "salary": "409",
-      "id": 4
+      "id": 3,
+      "increase": true,
+      "promotion": false
     },
     {
       "name": "Алексеев В.И",
-      "salary": "5400",
-      "id": 5
+      "salary": "54000",
+      "id": 5,
+      "promotion": true,
+      "increase": false
     },
     {
       "name": "Толстой Н.А",

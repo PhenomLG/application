@@ -55,7 +55,9 @@ class App extends Component{
             data: data.map(el => {
                 if(el.id === id)
                     {
-                       return {...el, [prop]: !el[prop]}
+                        const patchedObj = {...el, [prop]: !el[prop]};
+                        this.props.db.patchData(patchedObj, id);
+                        return patchedObj;
                     }
                 return el;   
             })
@@ -98,7 +100,7 @@ class App extends Component{
                 {      
                     const patchedObj = {...el, salary: newSalary}
                     this.props.db.patchData(patchedObj, id)
-                    return {...el, salary: newSalary};
+                    return patchedObj;
                 }
                 return el;   
             })

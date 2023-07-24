@@ -16,7 +16,7 @@ async function initialiazeApp(){
   const root = ReactDOM.createRoot(document.getElementById('root'));
   const db = new jsonDb(dbUrl);
   try{
-    await db.getJsonData()
+    await db.getData()
       .then(data => {
         root.render(
           <React.StrictMode>

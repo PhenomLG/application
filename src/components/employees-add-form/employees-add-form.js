@@ -26,7 +26,6 @@ class EmployeesAddForm extends Component{
             this.setState(() => this.initialState); 
     }
 
-
     render(){
         const {name, salary} = this.state;
         return (
