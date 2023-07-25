@@ -1,31 +1,35 @@
 {
   "employees": [
     {
-      "name": "Борис",
-      "salary": 388,
-      "increase": false,
-      "promotion": false,
-      "id": 1
-    },
-    {
       "name": "Болгаренко Ю.А",
-      "salary": "780",
+      "salary": "6450",
       "id": 3,
-      "increase": true,
+      "increase": false,
       "promotion": false
     },
     {
       "name": "Алексеев В.И",
-      "salary": "54000",
+      "salary": "567",
       "id": 5,
       "promotion": true,
       "increase": false
     },
     {
       "name": "Толстой Н.А",
-      "salary": "2300",
+      "salary": "1000",
       "id": 6,
       "promotion": false
+    },
+    {
+      "name": "Новиков И.А",
+      "salary": "8980",
+      "id": 9,
+      "promotion": false
+    },
+    {
+      "name": "Митруева В.Ю",
+      "salary": "999",
+      "id": 10
     }
   ]
 }

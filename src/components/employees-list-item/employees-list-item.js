@@ -1,36 +1,50 @@
 import { Component } from 'react';
-import './employees-list-item.css';
+import './employees-list-item.scss';
 
 class EmployeesListItem extends Component  {
+    _running = false;
+    _tasks = [];
     constructor(props){
         super(props);
         this.state = {
-            salary: props.salary
+            salary: props.salary,
+            error: false
         }
     }
 
-    onInputSalaryChange = (e) => {
-        const salary = e.target.value.match(/\d/ig).join("");
+    onInputSalaryChange = async (e) => {
+        let salary = e.target.value.match(/\d/ig);
+        if(salary != null)
+        {
+            salary = salary.join("");
+            this.setState({error: false});
+        }
+        else 
+        {
+            salary = "";
+            this.setState({error: true});
+        }
+    
         this.setState(({salary}));
         this.props.onInputSalaryChange(this.props.id, salary);
-    }
+    };
 
     render(){
-        const {name, onDelete, onToggleProp, increase, promotion} = this.props;
+        const {name, onDelete, onToggleProp, increase, promotion, error} = this.props;
         const {salary} = this.state;
         let liClasses = "list-group-item d-flex justify-content-between";
         if(increase)
             liClasses += " increase";
         if(promotion)
             liClasses += " like"
+        if(error)
+            liClasses += " list-group-item-input-error";
         return (
             <li className={liClasses}>
                 <span 
                     className="list-group-item-label"
                     onClick={onToggleProp}
-                    data-toggle="promotion">
-                        {name} 
-                </span>
+                    data-toggle="promotion">{name}</span>
                 <input type="text" 
                        className="list-group-item-input" 
                        value={salary + "$"}
@@ -53,6 +67,5 @@ class EmployeesListItem extends Component  {
             </li>  
         )
     }
-
 }
 export default EmployeesListItem;

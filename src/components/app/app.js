@@ -93,19 +93,39 @@ class App extends Component{
         }
     }
 
-    onInputSalaryChange = (id, newSalary) =>{
-        this.setState(({data}) => ({
-            data: data.map(el => {
-                if(el.id === id)
-                {      
-                    const patchedObj = {...el, salary: newSalary}
-                    this.props.db.patchData(patchedObj, id)
-                    return patchedObj;
-                }
-                return el;   
-            })
-        }));
-    }
+    // onInputSalaryChange = (id, newSalary) =>{
+    //     this.setState(({data}) => ({
+    //         data: data.map(async el => {
+    //             if(el.id === id)
+    //             {      
+    //                 const patchedObj = {...el, salary: newSalary};
+    //                 await this.props.db.patchData(patchedObj, id)
+    //                     .then((data) => {
+    //                         return data});
+            
+    //             }
+    //             return el;   
+    //         })
+    //     }));
+    // }
+
+    onInputSalaryChange = async (id, newSalary) => {
+        const { data } = this.state;
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].id === id) {
+            const patchedObj = { ...data[i], salary: newSalary };
+            try {
+              await this.props.db.patchData(patchedObj, id);
+              this.setState(({ data }) => ({
+                data: data.map(el => (el.id === id ? patchedObj : el))
+              }));
+            } catch (error) {
+              console.error('Ошибка при обновлении данных на сервере:', error);
+            }
+            break; // Выходим из цикла, так как нашли нужный объект
+          }
+        }
+      };
 
     render(){
         const {data, term} = this.state;

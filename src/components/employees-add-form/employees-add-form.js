@@ -2,7 +2,7 @@ import { Component } from 'react';
 
 import nextId from 'react-id-generator'
 
-import './employees-add-form.css';
+import './employees-add-form.scss';
 
 class EmployeesAddForm extends Component{
     _id = nextId();
