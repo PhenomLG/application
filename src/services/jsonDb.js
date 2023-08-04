@@ -30,14 +30,15 @@ class jsonDb {
     }
 
     async patchData(data, id){
-        const result = await fetch(this.url + `/${id}`, {
+         return await fetch(this.url + `/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-type": "application/json"
             },
             body: JSON.stringify(data)
-        });
-        return await result.json().catch(error => error.text);
+        })
+        .then(data => data.json)
+        .catch(error => console.log(error.text));
     }
 }
 
