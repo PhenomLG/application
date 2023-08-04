@@ -31,11 +31,6 @@
       "salary": "2000",
       "id": 11,
       "promotion": false
-    },
-    {
-      "name": "Михалков А.Е",
-      "salary": "1999",
-      "id": 12
     }
   ]
 }

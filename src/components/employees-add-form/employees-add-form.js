@@ -16,8 +16,12 @@ class EmployeesAddForm extends Component{
     }
 
     onValueChange = (e) => {
+        let value = e.target.value;
+        if(e.target.name === "name"){
+            value = value.replace(/\d/, "");
+        }
         this.setState({
-            [e.target.name]: e.target.value
+            [e.target.name]: value
         });
     }
 

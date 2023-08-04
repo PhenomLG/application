@@ -41,13 +41,13 @@ class App extends Component{
     
             const newItem = {name, salary, id};
             await this.props.db.postData(JSON.stringify(newItem))
-                .then(result => {
-                    this.setState(({data}) => {
-                        return {
-                            data: data.concat(result)
-                        }
-                    });
-                })
+            .then(result => {
+                this.setState(({data}) => {
+                    return {
+                        data: data.concat(result)
+                    }
+                });
+            })
         }
 
     onToggleProp = (id, prop) => {
