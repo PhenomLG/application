@@ -17,7 +17,7 @@ class App extends Component{
         this.state = {
             data: props.data,
             term: "",
-            filter: "all"
+            filter: "all",
         };
     }
 
@@ -92,22 +92,6 @@ class App extends Component{
             default: return items; 
         }
     }
-
-    // onInputSalaryChange = (id, newSalary) =>{
-    //     this.setState(({data}) => ({
-    //         data: data.map(async el => {
-    //             if(el.id === id)
-    //             {      
-    //                 const patchedObj = {...el, salary: newSalary};
-    //                 await this.props.db.patchData(patchedObj, id)
-    //                     .then((data) => {
-    //                         return data});
-            
-    //             }
-    //             return el;   
-    //         })
-    //     }));
-    // }
 
     onInputSalaryChange = async (id, newSalary) => {
         const { data } = this.state;

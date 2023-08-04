@@ -11,7 +11,7 @@
       "name": "Алексеев В.И",
       "salary": "567",
       "id": 5,
-      "promotion": true,
+      "promotion": false,
       "increase": false
     },
     {
@@ -27,9 +27,10 @@
       "promotion": false
     },
     {
-      "name": "Митруева В.Ю",
-      "salary": "999",
-      "id": 10
+      "name": "Митруева В. Ю",
+      "salary": "2000",
+      "id": 11,
+      "promotion": false
     }
   ]
 }

@@ -2,43 +2,52 @@ import { Component } from 'react';
 import './employees-list-item.scss';
 
 class EmployeesListItem extends Component  {
-    _running = false;
-    _tasks = [];
     constructor(props){
         super(props);
         this.state = {
             salary: props.salary,
-            error: false
+            error: false,
+            isSalaryUpdating: false
         }
     }
 
     onInputSalaryChange = async (e) => {
+        this.setState({isSalaryUpdating: true});
         let salary = e.target.value.match(/\d/ig);
-        if(salary != null)
+
+        if(!this.state.isSalaryUpdating)
         {
-            salary = salary.join("");
-            this.setState({error: false});
+            if(salary !== null)
+            {
+                salary = salary.join("");
+                console.log(salary);
+                this.setState({error: false});
+            }
+            else 
+            {
+                salary = "";
+                console.log(salary);
+                this.setState({error: true});
+            }
+            this.props.onInputSalaryChange(this.props.id, salary);
+
+            this.setState(({salary}));
+            setTimeout(() => this.setState(({isSalaryUpdating: false})), 20);
         }
-        else 
-        {
-            salary = "";
-            this.setState({error: true});
-        }
-    
-        this.setState(({salary}));
-        this.props.onInputSalaryChange(this.props.id, salary);
     };
 
     render(){
         const {name, onDelete, onToggleProp, increase, promotion, error} = this.props;
         const {salary} = this.state;
         let liClasses = "list-group-item d-flex justify-content-between";
+
         if(increase)
             liClasses += " increase";
         if(promotion)
             liClasses += " like"
         if(error)
             liClasses += " list-group-item-input-error";
+
         return (
             <li className={liClasses}>
                 <span 
@@ -48,7 +57,7 @@ class EmployeesListItem extends Component  {
                 <input type="text" 
                        className="list-group-item-input" 
                        value={salary + "$"}
-                       onChange={this.onInputSalaryChange}/>
+                       onChange={(e) => {this.onInputSalaryChange(e)}}/>
                 <div className='d-flex justify-content-center align-items-center'>
                     <button type="button"
                         className="btn-cookie btn-sm"
