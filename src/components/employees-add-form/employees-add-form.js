@@ -6,10 +6,12 @@ import './employees-add-form.scss';
 
 class EmployeesAddForm extends Component{
     _id = nextId();
-    initialState = {name: "", salary: ""}
     constructor(props){
         super(props);
-        this.state = this.initialState;
+        this.state = {
+            name: "",
+            salary: ""
+        }
         this._id = props.index;
     }
 
@@ -23,7 +25,7 @@ class EmployeesAddForm extends Component{
         e.preventDefault();
         const result = this.props.onAdd(this.state.name, this.state.salary, ++this._id);
         if(result !== null)
-            this.setState(() => this.initialState); 
+            this.setState(() => ({name: "", salary: ""})); 
     }
 
     render(){
