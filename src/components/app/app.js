@@ -98,14 +98,10 @@ class App extends Component{
         for (let i = 0; i < data.length; i++) {
           if (data[i].id === id) {
             const patchedObj = { ...data[i], salary: newSalary };
-            try {
-              await this.props.db.patchData(patchedObj, id);
-              this.setState(({ data }) => ({
-                data: data.map(el => (el.id === id ? patchedObj : el))
-              }));
-            } catch (error) {
-              console.error('Ошибка при обновлении данных на сервере:', error);
-            }
+            await this.props.db.patchData(patchedObj, id);
+            this.setState(({ data }) => ({
+            data: data.map(el => (el.id === id ? patchedObj : el))
+            }));
             break; // Выходим из цикла, так как нашли нужный объект
           }
         }

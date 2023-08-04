@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types'
 import './employees-list-item.scss';
 
 class EmployeesListItem extends Component  {
@@ -76,5 +77,9 @@ class EmployeesListItem extends Component  {
             </li>  
         )
     }
+}
+
+EmployeesListItem.propTypes = {
+    name: PropTypes.string,
 }
 export default EmployeesListItem;

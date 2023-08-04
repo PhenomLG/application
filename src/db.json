@@ -11,7 +11,7 @@
       "name": "Алексеев В.И",
       "salary": "567",
       "id": 5,
-      "promotion": false,
+      "promotion": true,
       "increase": false
     },
     {
@@ -31,6 +31,11 @@
       "salary": "2000",
       "id": 11,
       "promotion": false
+    },
+    {
+      "name": "Михалков А.Е",
+      "salary": "1999",
+      "id": 12
     }
   ]
 }
